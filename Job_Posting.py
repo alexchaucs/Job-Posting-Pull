@@ -72,4 +72,4 @@ def extract_date_from_result(soup):
 
 print(extract_date_from_result(soup))
 
-print("test")
+print("test_1")
