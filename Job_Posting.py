@@ -73,15 +73,31 @@ def extract_date_from_result(soup):
             dates.append(div.text)
     return(dates)
 
-############
-print(extract_job_title_from_result(soup))
-print(len(extract_company_from_result(soup)))
-print(extract_location_from_result(soup))
-print(len(extract_salary_from_result(soup)))
-print(len(extract_summary_from_result(soup)))
-print(len(extract_date_from_result(soup)))
+# def extract_job_links(soup):
+#     links = []
+#     for div in soup.find_all(name= "div", attrs={"class":"row"}):
+#         for link in div.findAll('a',href = True):
+#             links.append(link.get('href').text)
+#     return(links)
 
+def extract_job_links(soup): 
+    links = []
+    for div in soup.find_all(name= "div", attrs={"class":"row"}):
+        for a in div.find_all(name= "a", attrs={"data-tn-element": "jobTitle"}):
+            links.append("https://au.indeed.com"+a["href"])
+    return(links)
 
+############ 
 
+dict_lists = {"Job Title": extract_job_title_from_result(soup),
+              "Company" :extract_company_from_result(soup),
+              "Location" : extract_location_from_result(soup),
+              "Salary": extract_salary_from_result(soup),
+              "Summary":extract_summary_from_result(soup),
+              "Date Submitted" : extract_date_from_result(soup),
+              "Links": extract_job_links(soup)} 
 
+data_frame_indeed = pd.DataFrame(dict_lists)
 
+print(data_frame_indeed)
+data_frame_indeed.to_csv(r'C:\Users\alexc\Desktop\Automation Projects\Job Posting\Job_Application.csv', index = False)
