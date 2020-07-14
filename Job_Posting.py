@@ -73,6 +73,8 @@ def extract_date_from_result(soup):
             dates.append(div.text)
     return(dates)
 
+ 
+
 # def extract_job_links(soup):
 #     links = []
 #     for div in soup.find_all(name= "div", attrs={"class":"row"}):
@@ -101,3 +103,7 @@ data_frame_indeed = pd.DataFrame(dict_lists)
 
 print(data_frame_indeed)
 data_frame_indeed.to_csv(r'C:\Users\alexc\Desktop\Automation Projects\Job Posting\Job_Application.csv', index = False)
+=======
+extract_location_from_result(soup)
+extract_company_from_result(soup)
+
