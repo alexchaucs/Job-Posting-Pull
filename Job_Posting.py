@@ -70,10 +70,5 @@ def extract_date_from_result(soup):
             dates.append(div.text)
     return(dates)
 
-print(extract_date_from_result(soup))
-
-print("test_1")
-
-print("testing github pull request")
-
-print("test_11")
+extract_location_from_result(soup)
+extract_company_from_result(soup)
