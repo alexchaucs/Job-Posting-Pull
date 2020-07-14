@@ -40,9 +40,12 @@ def extract_company_from_result(soup):
 
 def extract_location_from_result(soup): 
     locations = []
+    count = 0
     for div in soup.find_all(name= "div", attrs={"class":"row"}):
-        for div in div.find_all(name = "span", attrs = {"class":"location"}): 
-            locations.append(div.text)
+        try:
+             locations.append(div.find(name = 'span', attrs = {"class":"location"}).text.strip())
+        except:
+             locations.append("Nothing Found")
     return(locations)
 
 def extract_salary_from_result(soup): 
@@ -70,10 +73,15 @@ def extract_date_from_result(soup):
             dates.append(div.text)
     return(dates)
 
-print(extract_date_from_result(soup))
+############
+print(extract_job_title_from_result(soup))
+print(len(extract_company_from_result(soup)))
+print(extract_location_from_result(soup))
+print(len(extract_salary_from_result(soup)))
+print(len(extract_summary_from_result(soup)))
+print(len(extract_date_from_result(soup)))
 
-print("test_1")
 
-print("testing github pull request")
 
-print("test_11")
+
+
